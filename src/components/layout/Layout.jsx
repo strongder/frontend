@@ -1,26 +1,34 @@
 import React, { useEffect } from "react";
+
 import "./layout.css";
+
 import Sidebar from "../sidebar/Sidebar";
 import TopNav from "../topnav/TopNav";
 import Routes from "../Routes";
+
 import { useSelector, useDispatch } from "react-redux";
-import { setMode, setColor } from "../../redux/slices/ThemeSlice"; // Điều chỉnh đường dẫn tùy thuộc vào cấu trúc thư mục của bạn
+
+import ThemeAction from "../../redux/actions/ThemeAction";
+import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
+import Managerment from "../../pages/Managerment";
 
 const Layout = (props) => {
-  const themeReducer = useSelector(state=>console.log(state)); // Lưu ý rằng đây phải là `state.theme` vì bạn đang sử dụng combineReducers
-  console.log("check", themeReducer);
+  const themeReducer = useSelector((state) => state.ThemeReducer);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const themeClass = localStorage.getItem("themeMode") || "theme-mode-light";
-    const colorClass = localStorage.getItem("colorMode") || "theme-mode-light";
+    const themeClass = localStorage.getItem("themeMode", "theme-mode-light");
 
-    dispatch(setMode(themeClass));
-    dispatch(setColor(colorClass));
+    const colorClass = localStorage.getItem("colorMode", "theme-mode-light");
+
+    dispatch(ThemeAction.setMode(themeClass));
+
+    dispatch(ThemeAction.setColor(colorClass));
   }, [dispatch]);
 
   return (
-    <div className="">
+    <div className={`layout ${themeReducer.mode} ${themeReducer.color}`}>
       <Sidebar {...props} />
       <div className="layout__content">
         <TopNav />
