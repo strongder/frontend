@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './topnav.css'
+import './topnav.scss'
 
 import { Link } from 'react-router-dom'
 
@@ -38,7 +38,7 @@ const renderUserToggle = (user) => (
 )
 
 const renderUserMenu =(item, index) => (
-    <Link to='/' key={index}>
+    <Link to={item.path}  key={index}>
         <div className="notification-item">
             <i className={item.icon}></i>
             <span>{item.content}</span>
@@ -55,14 +55,6 @@ const Topnav = () => {
             </div>
             <div className="topnav__right">
                 <div className="topnav__right-item">
-                    {/* dropdown here */}
-                    <Dropdown
-                        customToggle={() => renderUserToggle(curr_user)}
-                        contentData={user_menu}
-                        renderItems={(item, index) => renderUserMenu(item, index)}
-                    />
-                </div>
-                <div className="topnav__right-item">
                     <Dropdown
                         icon='bx bx-bell'
                         badge='12'
@@ -73,7 +65,12 @@ const Topnav = () => {
                     {/* dropdown here */}
                 </div>
                 <div className="topnav__right-item">
-                    <ThemeMenu/>
+                    {/* dropdown here */}
+                    <Dropdown
+                        customToggle={() => renderUserToggle(curr_user)}
+                        contentData={user_menu}
+                        renderItems={(item, index) => renderUserMenu(item, index)}
+                    />
                 </div>
             </div>
         </div>

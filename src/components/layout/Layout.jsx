@@ -1,48 +1,36 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from "react";
+import "./layout.css";
+import Sidebar from "../sidebar/Sidebar";
+import TopNav from "../topnav/TopNav";
+import Routes from "../Routes";
+import { useSelector, useDispatch } from "react-redux";
+import { setMode, setColor } from "../../redux/slices/ThemeSlice"; // Điều chỉnh đường dẫn tùy thuộc vào cấu trúc thư mục của bạn
 
-import './layout.css'
+const Layout = (props) => {
+  const themeReducer = useSelector(state=>console.log(state)); // Lưu ý rằng đây phải là `state.theme` vì bạn đang sử dụng combineReducers
+  console.log("check", themeReducer);
+  const dispatch = useDispatch();
 
-import Sidebar from '../sidebar/Sidebar'
-import TopNav from '../topnav/TopNav'
-import Routes from '../Routes'
+  useEffect(() => {
+    const themeClass = localStorage.getItem("themeMode") || "theme-mode-light";
+    const colorClass = localStorage.getItem("colorMode") || "theme-mode-light";
 
-import { BrowserRouter, Route } from 'react-router-dom'
+    dispatch(setMode(themeClass));
+    dispatch(setColor(colorClass));
+  }, [dispatch]);
 
-import { useSelector, useDispatch } from 'react-redux'
+  return (
+    <div className="">
+      <Sidebar {...props} />
+      <div className="layout__content">
+        <TopNav />
+        <div className="layout__content-main">
+          <Routes></Routes>
+          
+        </div>
+      </div>
+    </div>
+  );
+};
 
-import ThemeAction from '../../redux/actions/ThemeAction'
-
-const Layout = () => {
-
-    const themeReducer = useSelector(state => state.ThemeReducer)
-
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        const themeClass = localStorage.getItem('themeMode', 'theme-mode-light')
-
-        const colorClass = localStorage.getItem('colorMode', 'theme-mode-light')
-
-        dispatch(ThemeAction.setMode(themeClass))
-
-        dispatch(ThemeAction.setColor(colorClass))
-    }, [dispatch])
-
-    return (
-        <BrowserRouter>
-            <Route render={(props) => (
-                <div className={`layout ${themeReducer.mode} ${themeReducer.color}`}>
-                    <Sidebar {...props}/>
-                    <div className="layout__content">
-                        <TopNav/>
-                        <div className="layout__content-main">
-                            <Routes/>
-                        </div>
-                    </div>
-                </div>
-            )}/>
-        </BrowserRouter>
-    )
-}
-
-export default Layout
+export default Layout;

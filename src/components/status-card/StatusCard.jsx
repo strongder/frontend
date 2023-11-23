@@ -1,16 +1,19 @@
 import React from 'react'
 
-import './statuscard.css'
+import './statuscard.scss'
 
-const StatusCard = props => {
+const StatusCard = (props) => {
+    const {icon, title, description} = props;
     return (
         <div className='status-card'>
-            <div className="status-card__icon">
-                <i className={props.icon}></i>
+            <div className="status-card-icon">
+                <i className={icon}></i>
             </div>
-            <div className="status-card__info">
-                <h4>{props.count}</h4>
-                <span>{props.title}</span>
+            <div className="status-card-title">
+                <b>{title}</b>
+            </div>
+            <div className="status-card-desc">
+                <p>{description}</p>
             </div>
         </div>
     )

@@ -1,22 +1,37 @@
 [
     {
         "icon": "bx bx-shopping-bag",
-        "count": "1,995",
-        "title": "Total sales"
+        "title": "Quản lý tài khoản",
+        "description": "Total sales"
     },
     {
         "icon": "bx bx-cart",
-        "count": "2,001",
-        "title": "Daily visits"
+        "title": "Quản lý thời gian làm việc",
+        "description": "Daily visits"
     },
     {
         "icon": "bx bx-dollar-circle",
-        "count": "$2,632",
-        "title": "Total income"
+        "title": "Quản lý tin nhắn",
+        "description": "Total income"
     },
     {
         "icon": "bx bx-receipt",
-        "count": "1,711",
-        "title": "Total orders"
+        "title": "Quản lý danh sách sinh viên",
+        "description": "Có chức năng xem thông tin danh sách sinh viên đã quan tâm"
+    }, 
+    {
+        "icon": "bx bx-receipt",
+        "title": "Quản lý thông báo",
+        "description": "Total orders"
+    },
+    {
+        "icon": "bx bx-receipt",
+        "title": "Quản lý tin nhăn tự động",
+        "description": "Có chức năng xem, tạo, sửa xóa tin nhắn trả lời tự động "
+    },
+    {
+        "icon": "bx bx-receipt",
+        "title": "Quản lý kênh tương tác",
+        "description": "Total orders"
     }
 ]
