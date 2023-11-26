@@ -7,6 +7,7 @@ import Managerment from "../pages/Managerment";
 import LiveChat from "../pages/LiveChat";
 import Setting from "../pages/Setting";
 import Report from "../pages/Report";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Routes = () => {
   return (
